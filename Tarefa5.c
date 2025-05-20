@@ -151,7 +151,7 @@ void vJoystickTask(void *params)
         bool modo = modo_led;
 
         xQueueSend(xQueueModoOperacao, &modo, 0); // Envia o modo de operação para a fila
-        vTaskDelay(pdMS_TO_TICKS(100));              // 10 Hz de leitura
+        vTaskDelay(pdMS_TO_TICKS(100));             
     }
 }
 
@@ -232,7 +232,7 @@ void vBuzzerTask(void *params) {
             // Beep rápido intermitente
             tocar_buzzer(slice, channel, 800, 100); 
             vTaskDelay(pdMS_TO_TICKS(100));
-        }                           // Atualiza display
+        }                       
         }
     }
 }
@@ -304,8 +304,7 @@ int main()
     // Fim do trecho para modo BOOTSEL com botão B
 
     stdio_init_all();
-
-    // Cria a fila para compartilhamento de valor do joystick
+    
     xQueueJoystickData = xQueueCreate(5, sizeof(joystick_data_t));
     xQueueModoOperacao = xQueueCreate(1, sizeof(bool));
 
